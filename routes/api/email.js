@@ -15,7 +15,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 // @access   Public
 router.post("/send", (req, res) => {
 
-  console.log(req.body);
+  let response = {}
 
   // Send welcome email
   const msg = {
@@ -30,7 +30,12 @@ router.post("/send", (req, res) => {
     )
   };
 
-  sgMail.send(msg);
+  try{
+    sgMail.send(msg);
+    return res.sendStatus(200);
+  }catch(e){
+    return res.sendStatus(400).json({error: e});
+  }
 });
 
 module.exports = router;

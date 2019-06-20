@@ -13,12 +13,12 @@ app.use(cors());
 // ROUTES
 const email = require("./routes/api/email");
 
-// USE ROUTES
-app.use("/api/email", email);
-
 // BODY PARSER
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// USE ROUTES
+app.use("/api/email", email);
 
 const port = process.env.PORT || 5000;
 
